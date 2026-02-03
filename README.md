@@ -7,19 +7,25 @@ This project is a personal project to analyze population pattern in Malaysia acr
 1. Filtering population data by state, year, ethnicity, gender, and age groups
     - For testing purpose, the analysis is first conducted on Johor
     - The filter is handled in function
-    For example, for ethnicity, 
-    `ethnicity_group_data = df[(df['ethnicity_group'] == ethnicity_group) & (df['sex'] == 'both')].copy()` 
+    For example, for ethnicity,
+
+    ```python
+    ethnicity_group_data = df[(df['ethnicity_group'] == ethnicity_group) & (df['sex'] == 'both')].copy()
+    ```
 
 2. Handling boundary changes for Selangor and Sabah for most parts except population proportion
 
-`BOUNDARY_CHANGES = {
+```python
+BOUNDARY_CHANGES = {
     "Selangor": [2010],
     "Sabah": [1991]
-}`
+}
+```
 
 3. Remapping age groups into young, working, and old groups
 
-`AGE_MAP = {
+```python
+AGE_MAP = {
     "0-4": "young",
     "5-9": "young",
     "10-14": "young",
@@ -37,11 +43,13 @@ This project is a personal project to analyze population pattern in Malaysia acr
     "70-74": "old",
     "75-79": "old",
     "80+": "old"
-}`
+}
+```
 
 4. Remapping ethnicity into Bumiputera, Chinese, Indian, and Other
 
-`ETHNICITY_MAP = {
+```python
+ETHNICITY_MAP = {
     'bumi' : 'Bumiputera',
     'bumi_malay': 'Bumiputera',
     'bumi_other': 'Bumiputera',
@@ -50,20 +58,25 @@ This project is a personal project to analyze population pattern in Malaysia acr
     'other': 'Other',
     'other_citizen': 'Other',
     'other_noncitizen': 'Other'
-}`
+}
+```
 
 5. Unstacking data for multi-line plots
 For example, ethnicity proportion.
 
-`df_norm = df_norm.groupby('year')[[col for col in df_norm.columns]].apply(norm_total)
+```python
+df_norm = df_norm.groupby('year')[[col for col in df_norm.columns]].apply(norm_total)
 df_norm = df_norm.reset_index(drop=True)
-df_unstacked = df_norm.set_index(["year", "ethnicity_group"])["normed_population"].unstack()`
+df_unstacked = df_norm.set_index(["year", "ethnicity_group"])["normed_population"].unstack()
+```
 
 6. Allowing plotting by proportion via the `norm_total` function
 
-`def norm_total(df):
+```python
+def norm_total(df):
     df["normed_population"] = df["population"] / df["population"].sum()
-    return df`
+    return df
+```
 
 7. Visualising population proportion and trends via line plots, bar plots and pie chart
 
