@@ -13,7 +13,7 @@ This project is a personal project to analyze population pattern in Malaysia acr
     ethnicity_group_data = df[(df['ethnicity_group'] == ethnicity_group) & (df['sex'] == 'both')].copy()
     ```
 
-2. Handling boundary changes for Selangor and Sabah for most parts except population proportion
+2. Handling boundary changes for Selangor and Sabah for most parts except population proportion and growth rate
 
 ```python
 BOUNDARY_CHANGES = {
@@ -78,7 +78,13 @@ def norm_total(df):
     return df
 ```
 
-7. Visualising population proportion and trends via line plots, bar plots and pie chart
+7. Allowing plotting by percentage change via `pandas.DataFrame.pct_change`
+
+```python
+malaysia_ethnicity_data_pt = malaysia_ethnicity_data_pt.pct_change()
+```
+
+8. Visualising population proportion and trends via line plots, bar plots and pie chart
 
 ## Data source 
 The data comes from <a href="https://open.dosm.gov.my/data-catalogue/population_state">Population Table: States (Department of Statistics Malaysia, 2025)</a>.
@@ -88,9 +94,9 @@ The initial data check is available in the *population_initial_data_check* file
 
 ## Future extensions
 - Age pyramid
-- Growth rate 
 - Time series prediction for Malaysia
 
 ## Note 
 - All code files are in Jupyter notebook format
 - Ethnicity data is available from 1980 onwards
+- There are spikes due to intercensal adjustments (years divisible by 10), govenrment policies and COVID-19 pandemic (2020, 2021): A future commit will account this in existing plots 
