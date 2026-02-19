@@ -96,7 +96,12 @@ The initial data check is available in the *population_initial_data_check* file
 - Age pyramid
 - Time series prediction for Malaysia
 
+## Limitations as noted in data source except the last one (The last is from observation after plotting population growth)
+- Ethnicity data is available from 1980 onwards
+- There are spikes due to intercensal adjustments (1991 and years divisible by 10 except 1990), govenrment policies and COVID-19 pandemic (2020, 2021): A future commit will account this in existing plots 
+- This project does not consider migration, socioeconomic factors, social expectations, and other factors which might explain:
+    - Growth rate for others fluctuates widely 
+    - Population growth rate decreases if spikes are removed
+
 ## Note 
 - All code files are in Jupyter notebook format
-- Ethnicity data is available from 1980 onwards
-- There are spikes due to intercensal adjustments (years divisible by 10), govenrment policies and COVID-19 pandemic (2020, 2021): A future commit will account this in existing plots 
